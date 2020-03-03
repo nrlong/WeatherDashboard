@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     $(".searchBtn").click(function () {
-        // $("#cityInfo").empty();
 
         let search = $(this).prev().val()
 
@@ -45,9 +44,28 @@ $(document).ready(function () {
                     })
                     .then(function (responseUV) {
                         let uvIndex = $("#uvIndex");
-                        uvIndex.text("UV Index: " + responseUV.value);
+                        uvIndex.text("UV Index: ")
 
-                        console.log(responseUV);
+                        let uvValue = $("<span>");
+                        uvValue.text(responseUV.value);
+
+                        //set uvIndex colors.  color scale used from https://www.epa.gov/sunsafety/uv-index-scale-0
+                        
+                        if (responseUV.value <= 2){
+                            uvValue.attr("class", "low");
+                        }else if (responseUV.value <= 5){
+                            uvValue.attr("class", "moderate");
+                        }else if(responseUV.value <= 7){
+                            uvValue.attr("class", "high");
+                        }else if(responseUV.value <= 10){
+                            uvValue.attr("class", "very-high");
+                        }else{
+                            uvValue.attr("class", "extreme");
+                        }
+
+                        uvIndex.append(uvValue);
+
+                        console.log(typeof(responseUV.value));
                     })
 
 

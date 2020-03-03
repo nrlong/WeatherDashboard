@@ -14,14 +14,35 @@ h1{
     padding-top: 20px;
   }
 
-  /* .main {
+  .main {
     margin-left: 160px; 
     padding: 0px 10px;
-  } */
+  }
 
   #cityInfo{
       text-align: center;
   }
 
+  /* UV index colors */
+
+  .low{
+      background-color: green;
+  }
+
+  .moderate{
+      background-color: yellow;
+  }
+
+  .high{
+      background-color: darkorange;
+  }
+
+  .very-high{
+      background-color: red;
+  }
+
+  .extreme{
+      background-color: purple;
+  }
 
 
