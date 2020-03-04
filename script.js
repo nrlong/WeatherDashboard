@@ -1,10 +1,11 @@
 $(document).ready(function () {
 
+    const key = "198e7cd123c38028748d31ffb347ffa7";
+
+   
+
     $(".searchBtn").click(function () {
-
         let search = $(this).prev().val()
-
-        const key = "198e7cd123c38028748d31ffb347ffa7";
 
         const URL = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + key;
 
@@ -26,7 +27,7 @@ $(document).ready(function () {
                 humidity.text("Humidity: " + response.main.humidity + "%");
 
                 let windSpeed = $("#windSpeed");
-                windSpeed.text("Wind Speed: " + response.wind.speed + "MPH");
+                windSpeed.text("Wind Speed: " + response.wind.speed + " MPH");
 
                 //generate lon and lat for uv index pull
                 let lon = response.coord.lon;
@@ -50,33 +51,38 @@ $(document).ready(function () {
                         uvValue.text(responseUV.value);
 
                         //set uvIndex colors.  color scale used from https://www.epa.gov/sunsafety/uv-index-scale-0
-                        
-                        if (responseUV.value <= 2){
+
+                        if (responseUV.value <= 2) {
                             uvValue.attr("class", "low");
-                        }else if (responseUV.value <= 5){
+                        } else if (responseUV.value <= 5) {
                             uvValue.attr("class", "moderate");
-                        }else if(responseUV.value <= 7){
+                        } else if (responseUV.value <= 7) {
                             uvValue.attr("class", "high");
-                        }else if(responseUV.value <= 10){
+                        } else if (responseUV.value <= 10) {
                             uvValue.attr("class", "very-high");
-                        }else{
+                        } else {
                             uvValue.attr("class", "extreme");
                         }
 
+                        console.log(typeof (responseUV.value));
+
                         uvIndex.append(uvValue);
-
-                        console.log(typeof(responseUV.value));
                     })
-
-
-
-
 
                 console.log(response);
             });
 
+    const URL5Day = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + key;
 
+    $.ajax({
+            url: URL5Day,
+            method: "GET"
+        })
+        .then(function (response5Day) {
+            console.log(response5Day);
+        })
 
     })
 
-})
+    
+});
