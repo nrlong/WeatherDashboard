@@ -22,6 +22,11 @@ $(document).ready(function () {
 
     $(".searchBtn").click(function (event) {
         event.preventDefault();
+
+        // empty generated elements with each search to avoid duplication
+        $("#weatherIcon").empty();
+        $("#forecast").empty();
+
         let search = $(this).prev().val()
 
         const URL = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + key;
@@ -43,6 +48,13 @@ $(document).ready(function () {
                 today.text(todayDate)
 
                 console.log(todayDate);
+
+                let iconToday = $("#weatherIcon");
+                let getIcon = response.weather[0].icon;
+
+                console.log(getIcon);
+                let iconImage = $("<img>").attr("src", "http://openweathermap.org/img/wn/"+ getIcon +"@2x.png");
+                iconToday.append(iconImage);
 
 
                 // convert from kelvin to °f
@@ -119,6 +131,15 @@ $(document).ready(function () {
                     fiveDayDateDiv.text(fiveDayDate);
 
                     forcastDiv.append(fiveDayDateDiv);
+
+                    let icon5Day = $("<div>").attr("class", "weatherIcon5Day");
+                    let getIcon5Day = response5Day.list[timeChange].weather[0].icon;
+
+                    console.log(getIcon5Day);
+                    let iconImage5Day = $("<img>").attr("src", "http://openweathermap.org/img/wn/"+ getIcon5Day +"@2x.png").attr("class", "five-day-icon");
+                    icon5Day.append(iconImage5Day);
+
+                    fiveDayDateDiv.append(icon5Day);
 
 
                     let forecast = $("<div>").attr("id", "temp-" + i);

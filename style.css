@@ -54,9 +54,20 @@ span{
       background-color: purple;
   }
 
+#weatherIcon{
+    background-color: lightblue;
+    width: 100px;
+    border-radius: 20%;
+    margin: auto;
+}
+
   .five-day{
       display: inline-block;
 
       padding: 20px;
   }
 
+  .five-day-icon{
+      background-color: lightblue;
+      border-radius: 20%;
+  }
