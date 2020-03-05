@@ -2,9 +2,26 @@ $(document).ready(function () {
 
     const key = "198e7cd123c38028748d31ffb347ffa7";
 
+    let historyArray = []
+
+    function historyLink(){
+        $("#searchHistory").empty();
+        for (let i = 0; i < historyArray.length; i++){
+            let newLink = $("<button>");
+            newLink.addClass("history");
+            newLink.attr("data-name", historyArray[i]);
+            newLink.text(historyArray[i]);
+            $("#searchHistory").append(newLink);
+        }
+        console.log(historyArray);
+    }
+    
+
+
    
 
-    $(".searchBtn").click(function () {
+    $(".searchBtn").click(function (event) {
+        event.preventDefault();
         let search = $(this).prev().val()
 
         const URL = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + key;
@@ -52,13 +69,13 @@ $(document).ready(function () {
 
                         //set uvIndex colors.  color scale used from https://www.epa.gov/sunsafety/uv-index-scale-0
 
-                        if (responseUV.value <= 2) {
+                        if (responseUV.value < 3) {
                             uvValue.attr("class", "low");
-                        } else if (responseUV.value <= 5) {
+                        } else if (responseUV.value < 6) {
                             uvValue.attr("class", "moderate");
-                        } else if (responseUV.value <= 7) {
+                        } else if (responseUV.value < 8) {
                             uvValue.attr("class", "high");
-                        } else if (responseUV.value <= 10) {
+                        } else if (responseUV.value < 11) {
                             uvValue.attr("class", "very-high");
                         } else {
                             uvValue.attr("class", "extreme");
@@ -72,9 +89,9 @@ $(document).ready(function () {
                 console.log(response);
             });
 
-    const URL5Day = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + key;
+        const URL5Day = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + key;
 
-    $.ajax({
+        $.ajax({
             url: URL5Day,
             method: "GET"
         })
@@ -82,7 +99,25 @@ $(document).ready(function () {
             console.log(response5Day);
         })
 
+
+        let searchText = $("#search").val().trim();
+
+        console.log(searchText);
+        historyArray.push(searchText);
+
+        historyLink();
     })
 
     
+
+    //allow enter keypress to search
+
+    $("#searchDiv").keypress(function(event) { 
+	
+        if (event.keyCode === 13) { 
+            event.preventDefault();
+           $(".searchBtn").click();
+        } 
+    }); 
+
 });

@@ -12,12 +12,19 @@ h1{
     background-color: grey; 
     overflow-x: hidden; 
     padding-top: 20px;
+    padding-left: 10px;
   }
 
   .main {
     margin-left: 160px; 
     padding: 0px 10px;
   }
+
+span{
+    padding: 5px;
+    border-radius: 35%;
+    
+}
 
   #cityInfo{
       text-align: center;
