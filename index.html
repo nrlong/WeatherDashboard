@@ -16,26 +16,29 @@
         </div>
 
         <div id="searchDiv">
-            <input type="text" name="citySearch" id="search">
+            <input type="text" name="citySearch" id="search" placeholder="Enter City">
+            <!-- <label for="search">Please enter city:</label> -->
             <button class = "searchBtn" type="submit">Search</button>
         </div>
-
         <div id="searchHistory"></div>
     </div>
 
     <div id = "cityInfo">
-        <h3 id="city"></h3>
+        <h2 id="city"></h2>
+        <h3 id="today"></h3>
         <p id="temperature"></p>
         <p class="" id="humidity"></p>
         <p id="windSpeed"></p>
         <p id="uvIndex"></p>
 
     </div>
+
+    <div id="forecast"></div>
     
 
     
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>

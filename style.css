@@ -2,6 +2,9 @@ h1{
     text-align: center;
 }
 
+#forecast{
+    text-align: center;
+}
 #containerNav{
     height: 100%; 
     width: 12rem; 
@@ -29,7 +32,6 @@ span{
   #cityInfo{
       text-align: center;
   }
-
   /* UV index colors */
 
   .low{
@@ -52,4 +54,9 @@ span{
       background-color: purple;
   }
 
+  .five-day{
+      display: inline-block;
+
+      padding: 20px;
+  }
 
