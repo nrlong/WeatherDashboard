@@ -4,11 +4,11 @@ $(document).ready(function () {
 
     let historyArray = []
 
-    
+
     // function to create history array on search
-    function historyLink(){
+    function historyLink() {
         $("#searchHistory").empty();
-        for (let i = 0; i < historyArray.length; i++){
+        for (let i = 0; i < historyArray.length; i++) {
             let newLink = $("<button>");
             newLink.addClass("history");
             newLink.attr("data-name", historyArray[i]);
@@ -41,9 +41,9 @@ $(document).ready(function () {
 
                 let today = $("#today");
                 today.text(todayDate)
-                
+
                 console.log(todayDate);
-                
+
 
                 // convert from kelvin to °f
                 let temp = $("#temperature");
@@ -99,39 +99,39 @@ $(document).ready(function () {
 
                 console.log(response);
             });
-        
+
         const URL5Day = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + key;
 
         // call for 5 day weather forcast
         $.ajax({
-            url: URL5Day,
-            method: "GET"
-        })
-        .then(function (response5Day) {
-            
-            for (let i = 0; i < 5; i++){
-            let timeChange = i * 8 + 7;
-            let fiveDayDate = moment.unix(response5Day.list[timeChange].dt).format("MMMM Do, YYYY");
+                url: URL5Day,
+                method: "GET"
+            })
+            .then(function (response5Day) {
 
-            let forcastDiv = $("#forecast");
+                for (let i = 0; i < 5; i++) {
+                    let timeChange = i * 8 + 7;
+                    let fiveDayDate = moment.unix(response5Day.list[timeChange].dt).format("MMMM Do, YYYY");
 
-            let fiveDayDateDiv = $("<div>").attr("class", "five-day")
-            fiveDayDateDiv.text(fiveDayDate);
+                    let forcastDiv = $("#forecast");
 
-            forcastDiv.append(fiveDayDateDiv);
+                    let fiveDayDateDiv = $("<div>").attr("class", "five-day")
+                    fiveDayDateDiv.text(fiveDayDate);
 
-            
-            let forecast = $("<div>").attr("id", "temp-" + i);
-            forecast.text("Temperature: " + parseInt(((response5Day.list[timeChange].main.temp)- 273.15) * (9 / 5) + 32) +"°f");
-            
-            fiveDayDateDiv.append(forecast);
+                    forcastDiv.append(fiveDayDateDiv);
 
-        }
 
-            
+                    let forecast = $("<div>").attr("id", "temp-" + i);
+                    forecast.text("Temperature: " + parseInt(((response5Day.list[timeChange].main.temp) - 273.15) * (9 / 5) + 32) + "°f");
 
-            console.log(response5Day);
-        })
+                    fiveDayDateDiv.append(forecast);
+
+                }
+
+
+
+                console.log(response5Day);
+            })
 
 
         let searchText = $("#search").val().trim();
@@ -144,12 +144,12 @@ $(document).ready(function () {
 
     //allow enter keypress to search
 
-    $("#searchDiv").keypress(function(event) { 
-	
-        if (event.keyCode === 13) { 
+    $("#searchDiv").keypress(function (event) {
+
+        if (event.keyCode === 13) {
             event.preventDefault();
-           $(".searchBtn").click();
-        } 
-    }); 
+            $(".searchBtn").click();
+        }
+    });
 
 });
