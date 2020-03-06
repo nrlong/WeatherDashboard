@@ -51,7 +51,7 @@ $(document).ready(function () {
                 let getIcon = response.weather[0].icon;
 
                 console.log(getIcon);
-                let iconImage = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + getIcon + "@2x.png");
+                let iconImage = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + getIcon + "@2x.png");
                 iconToday.append(iconImage);
 
 
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
 
                 // get information for UV index
-                const URLUV = "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
+                const URLUV = "https://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
 
                 $.ajax({
                         url: URLUV,
@@ -110,7 +110,7 @@ $(document).ready(function () {
                 console.log(response);
             });
 
-        const URL5Day = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + key;
+        const URL5Day = "https://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + key;
 
         // call for 5 day weather forcast
         $.ajax({
@@ -134,7 +134,7 @@ $(document).ready(function () {
                     let getIcon5Day = response5Day.list[timeChange].weather[0].icon;
 
                     console.log(getIcon5Day);
-                    let iconImage5Day = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + getIcon5Day + "@2x.png").attr("class", "five-day-icon");
+                    let iconImage5Day = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + getIcon5Day + "@2x.png").attr("class", "five-day-icon");
                     icon5Day.append(iconImage5Day);
 
                     fiveDayDateDiv.append(icon5Day);
