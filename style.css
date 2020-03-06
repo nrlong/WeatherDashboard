@@ -22,12 +22,8 @@ h1 {
 #container-fluid{
     width: 15rem;
     margin: auto;
-    border-radius: 10%;
-    border-style: ridge;
-    border-radius: 5px;
-    border-color: lightsalmon;
-    background-color: lightgreen;
     margin-bottom: 5rem;
+    padding-bottom: 10px;
 }
 
 .historyBtn {
