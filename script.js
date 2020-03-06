@@ -4,12 +4,11 @@ $(document).ready(function () {
 
     let historyArray = []
 
-
     // function to create history array on search
     function historyLink() {
         $("#searchHistory").empty();
         for (let i = 0; i < historyArray.length; i++) {
-            let newLink = $("<button>");
+            let newLink = $("<button>").attr("class", "historyBtn");
             newLink.addClass("history");
             newLink.attr("data-name", historyArray[i]);
             newLink.text(historyArray[i]);
@@ -19,7 +18,6 @@ $(document).ready(function () {
     }
 
     // search button click and all the goodness that goes with it
-
     $(".searchBtn").click(function (event) {
         event.preventDefault();
 
@@ -53,7 +51,7 @@ $(document).ready(function () {
                 let getIcon = response.weather[0].icon;
 
                 console.log(getIcon);
-                let iconImage = $("<img>").attr("src", "http://openweathermap.org/img/wn/"+ getIcon +"@2x.png");
+                let iconImage = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + getIcon + "@2x.png");
                 iconToday.append(iconImage);
 
 
@@ -136,7 +134,7 @@ $(document).ready(function () {
                     let getIcon5Day = response5Day.list[timeChange].weather[0].icon;
 
                     console.log(getIcon5Day);
-                    let iconImage5Day = $("<img>").attr("src", "http://openweathermap.org/img/wn/"+ getIcon5Day +"@2x.png").attr("class", "five-day-icon");
+                    let iconImage5Day = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + getIcon5Day + "@2x.png").attr("class", "five-day-icon");
                     icon5Day.append(iconImage5Day);
 
                     fiveDayDateDiv.append(icon5Day);
@@ -147,13 +145,15 @@ $(document).ready(function () {
 
                     fiveDayDateDiv.append(forecast);
 
+                    let fiveDayHumid = response5Day.list[timeChange].main.humidity;
+                    let fiveDayHumidOut = $("<div>")
+                    fiveDayHumidOut.text("Humidity: " + fiveDayHumid + "%");
+
+                    fiveDayDateDiv.append(fiveDayHumidOut);
                 }
-
-
 
                 console.log(response5Day);
             })
-
 
         let searchText = $("#search").val().trim();
 
@@ -164,6 +164,7 @@ $(document).ready(function () {
     })
 
     //allow enter keypress to search
+
 
     $("#searchDiv").keypress(function (event) {
 
