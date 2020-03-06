@@ -18,7 +18,7 @@ $(document).ready(function () {
     }
 
     // search button click and all the goodness that goes with it
-    $(".searchBtn").click(function (event) {
+    $(".searchBtn").click(function weatherSearch (event) {
         event.preventDefault();
 
         // empty generated elements with each search to avoid duplication
@@ -161,6 +161,7 @@ $(document).ready(function () {
         historyArray.push(searchText);
 
         historyLink();
+        
     })
 
     //allow enter keypress to search
