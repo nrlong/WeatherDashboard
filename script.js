@@ -12,7 +12,7 @@ $(document).ready(function () {
             newLink.addClass("history");
             newLink.attr("id", historyArray[i]);
             newLink.text(historyArray[i]);
-            $("#searchHistory").append(newLink);
+            $("#searchHistory").prepend(newLink);
         }
     }
 
@@ -142,7 +142,7 @@ $(document).ready(function () {
                     fiveDayDateDiv.append(icon5Day);
 
                     let forecast = $("<div>").attr("id", "temp-" + i);
-                    forecast.text("Temperature: " + parseInt(((response5Day.list[timeChange].main.temp) - 273.15) * (9 / 5) + 32) + "°f");
+                    forecast.text("Temperature: " + parseInt(((response5Day.list[timeChange].main.temp) - 273.15) * (9 / 5) + 32) + "°F");
 
                     fiveDayDateDiv.append(forecast);
 
